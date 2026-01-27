@@ -2,9 +2,8 @@
 
 A simple, beautiful app for creating and learning English lessons with interactive slides.
 
-## 🚀 Getting Started
 
-### Run the Dev Server
+### To view the slides: 
 
 ```bash
 npm run dev
@@ -112,14 +111,8 @@ src/
 │   ├── lesson3.ts
 │   ├── lesson4.ts
 │   └── index.ts         (auto-discovers all lessons)
-├── components/
-│   ├── Home.tsx         (lesson list)
-│   ├── LessonView.tsx   (lesson viewer)
-│   └── Slides/          (slide renderers)
-└── styles/              (styling)
 ```
 
----
 
 ## 💡 Tips
 
