@@ -1,73 +1,133 @@
-# React + TypeScript + Vite
+# 📚 English Lessons
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, beautiful app for creating and learning English lessons with interactive slides.
 
-Currently, two official plugins are available:
+## 🚀 Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Run the Dev Server
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Then **Ctrl+Click** the link in the terminal (usually `http://localhost:5173`) to open the app in your browser. Your changes will update instantly!
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ➕ Adding a New Lesson
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Step 1: Create a Lesson File
+
+Create a new file in `src/data/lessons/` called something like `lesson5.ts`:
+
+```typescript
+import type { Lesson } from '../../types';
+
+export const myNewLesson: Lesson = {
+    id: 'unique-lesson-id',           // Used internally (no spaces, use hyphens)
+    title: 'My Lesson Title',          // Shown in the menu
+    description: 'Brief description',  // Shows in lesson preview
+    slides: [
+        // Add your slides here
+    ]
+};
 ```
+
+### Step 2: Add Your Slides
+
+Each lesson is made of slides. You have 4 types to choose from:
+
+#### Title Slide (Opening/Closing)
+```typescript
+{
+    id: 'slide-1',
+    type: 'title',
+    title: 'Welcome!',
+    content: 'Subtitle or intro text'
+}
+```
+
+#### Content Slide (Text with Bullets)
+```typescript
+{
+    id: 'slide-2',
+    type: 'content',
+    title: 'Main Content',
+    content: 'Main text goes here.',
+    bulletPoints: [
+        'First point',
+        'Second point',
+        'Third point'
+    ]
+}
+```
+
+#### Split Slide (Text + Image)
+```typescript
+{
+    id: 'slide-3',
+    type: 'split',
+    title: 'Image & Text',
+    content: 'Text that appears alongside an image.',
+    image: 'https://images.unsplash.com/photo-...',  // Unsplash URL
+    bulletPoints: [
+        'Detail about the image',
+        'Another detail'
+    ]
+}
+```
+
+#### Quiz Slide
+```typescript
+{
+    id: 'slide-4',
+    type: 'quiz',
+    title: 'Quiz Time!',
+    question: 'What is the correct answer?',
+    options: [
+        'Option A',
+        'Option B (Correct)',
+        'Option C',
+        'Option D'
+    ],
+    correctAnswer: 1  // 0-based index (0 = first option, 1 = second, etc.)
+}
+```
+
+### Step 3: Save Your Work
+
+```bash
+git add src/data/lessons/lesson5.ts
+git commit -m "Add new lesson: My Lesson Title"
+git push
+```
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── data/lessons/        ← Add your lessons here!
+│   ├── demoLesson.ts
+│   ├── lesson2.ts
+│   ├── lesson3.ts
+│   ├── lesson4.ts
+│   └── index.ts         (auto-discovers all lessons)
+├── components/
+│   ├── Home.tsx         (lesson list)
+│   ├── LessonView.tsx   (lesson viewer)
+│   └── Slides/          (slide renderers)
+└── styles/              (styling)
+```
+
+---
+
+## 💡 Tips
+
+- **Images**: Use [Unsplash](https://unsplash.com) for free, high-quality images. Just copy the photo URL!
+- **IDs**: Use unique IDs with hyphens (e.g., `cooking-household`, not `cooking household`)
+- **Auto-Discovery**: Your lesson will automatically appear once saved—no registration needed!
+- **Hot Reload**: The app updates instantly when you save—no need to refresh!
+
+---
+
+**Happy teaching!** 💕
