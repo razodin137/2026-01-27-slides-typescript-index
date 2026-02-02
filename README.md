@@ -11,6 +11,20 @@ npm run dev
 
 Then **Ctrl+Click** the link in the terminal (usually `http://localhost:5173`) to open the app in your browser. Your changes will update instantly!
 
+## 🖨️ Printing Lessons
+
+You can print any lesson as a PDF (one slide per page).
+
+1. Open the lesson you want to print.
+2. Click the **Print PDF** button in the top right corner.
+3. In the print dialog, ensure **Landscape** is selected.
+
+> **Tip:** If the slides aren't aligning well in the print, try switching between "scale" and "fit to page width" options in the print settings.
+
+![Print Preview Example](https://via.placeholder.com/800x400?text=Print+Preview+Example)
+
+---
+
 ## ➕ Adding a New Lesson
 
 ### Step 1: Create a Lesson File
