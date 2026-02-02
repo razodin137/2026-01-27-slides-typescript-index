@@ -73,7 +73,7 @@ export const adjectiveLesson: Lesson = {
             content: 'Look at how adjectives change the mood of a scene.',
             image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800',
             bulletPoints: [
-                'Jagged, snow-capped peaks',
+                'sharp, snow-capped peaks',
                 'Lush, green valleys',
                 'A solitary, distant hiker',
                 'Clear, turquoise water'
