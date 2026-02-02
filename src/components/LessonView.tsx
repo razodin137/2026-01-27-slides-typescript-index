@@ -38,15 +38,28 @@ const LessonView: React.FC = () => {
     };
 
     return (
-        <AppLayout
-            currentSlideIndex={currentSlide}
-            totalSlides={lesson.slides.length}
-            lessonTitle={lesson.title}
-            onNext={handleNext}
-            onPrev={handlePrev}
-        >
-            <SlideRenderer slide={lesson.slides[currentSlide]} />
-        </AppLayout>
+        <>
+            <AppLayout
+                currentSlideIndex={currentSlide}
+                totalSlides={lesson.slides.length}
+                lessonTitle={lesson.title}
+                onNext={handleNext}
+                onPrev={handlePrev}
+                onPrint={() => window.print()}
+            >
+                <SlideRenderer slide={lesson.slides[currentSlide]} />
+            </AppLayout>
+
+            {/* Print View - Hidden by default, shown in print media */}
+            <div className="print-container" style={{ display: 'none' }}>
+                {lesson.slides.map((slide, index) => (
+                    <div key={`print-${slide.id}`} className="print-slide-page">
+                        <SlideRenderer slide={slide} />
+                        <div className="print-page-number">{index + 1}</div>
+                    </div>
+                ))}
+            </div>
+        </>
     );
 };
 

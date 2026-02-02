@@ -10,6 +10,7 @@ interface AppLayoutProps {
     lessonTitle: string;
     onNext: () => void;
     onPrev: () => void;
+    onPrint?: () => void;
 }
 
 const AppLayout: React.FC<AppLayoutProps> = ({
@@ -18,7 +19,8 @@ const AppLayout: React.FC<AppLayoutProps> = ({
     totalSlides,
     lessonTitle,
     onNext,
-    onPrev
+    onPrev,
+    onPrint
 }) => {
     const navigate = useNavigate();
     const progress = ((currentSlideIndex + 1) / totalSlides) * 100;
@@ -53,17 +55,40 @@ const AppLayout: React.FC<AppLayoutProps> = ({
                 backdropFilter: 'blur(10px)',
                 backgroundColor: 'rgba(255,255,255,0.3)'
             }}>
-                <div
-                    onClick={() => navigate('/')}
-                    style={{ cursor: 'pointer', fontWeight: 800, color: 'var(--color-primary)' }}
-                >
-                    EnglishSlide
+                <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+                    <div
+                        onClick={() => navigate('/')}
+                        style={{ cursor: 'pointer', fontWeight: 800, color: 'var(--color-primary)' }}
+                    >
+                        EnglishSlide
+                    </div>
                 </div>
-                <div style={{ fontWeight: 600, color: 'var(--color-text-muted)' }}>
+
+                <div style={{ fontWeight: 600, color: 'var(--color-text-muted)', position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
                     {lessonTitle}
                 </div>
-                <div style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
-                    {currentSlideIndex + 1} / {totalSlides}
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    {onPrint && (
+                        <button
+                            onClick={onPrint}
+                            style={{
+                                background: 'transparent',
+                                border: '1px solid var(--color-primary)',
+                                color: 'var(--color-primary)',
+                                padding: '0.25rem 0.75rem',
+                                borderRadius: 'var(--radius-sm)',
+                                cursor: 'pointer',
+                                fontSize: '0.8rem',
+                                fontWeight: 600
+                            }}
+                        >
+                            Print PDF
+                        </button>
+                    )}
+                    <div style={{ fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
+                        {currentSlideIndex + 1} / {totalSlides}
+                    </div>
                 </div>
             </header>
 
